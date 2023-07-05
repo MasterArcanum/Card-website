@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Master_Arcanum</title>
+    <style>
+        @font-face {
+            font-family: 'RetroComputer[RUS by Daymarius]'; 
+            src: url(retrocomputerrusbydaymarius.ttf); 
+        }
+
+        body {
+            font-family: 'RetroComputer[RUS by Daymarius]';
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #000;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        .main-content {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #000;
+            border: 2px solid #fff;
+        }
+
+        .main-content h2 {
+            font-size: 24px;
+            margin-top: 0;
+        }
+
+        .main-content ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .main-content li {
+            margin-bottom: 10px;
+        }
+
+        .main-content p {
+            line-height: 1.5;
+            margin-bottom: 20px;
+            padding-bottom: 50px;
+        }
+
+        .footer {
+            background-color: #000;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .crossed-zero {
+            text-decoration: line-through;
+        }
+
+        .footer {
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        background-color: #000;
+        text-align: center;
+        padding: 10px;
+    }
+/*
+    @keyframes pulsate {
+    0% { box-shadow: 0 0 10px #ff0000; }
+    50% { box-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000; }
+    100% { box-shadow: 0 0 10px #ff0000; }
+}
+#image {
+    animation: pulsate 1s infinite;
+    border-radius: 60%;
+}
+*/
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 id="console"></h1>
+        <br>
+        <img id="image" src="gendalf.png" style="display: none; width: 15%;"/>
+    </div>
+
+    <div class="main-content">
+        <p id="about-me-content"></p>
+    </div>
+
+    <div class="footer">
+        &copy; 2023 Master_Arcanum. Все права защищены.
+    </div>
+
+    <script>
+       var i = 0;
+var txtIdx = 0;
+var txts = [
+    'Master_Arcanum', 
+    'Master_Arcanum, не просто имя, а символ постоянного стремления к знаниям и пониманию. В этом мире, полном загадок и тайн, важно оставаться вечным учеником, открывающим для себя новые горизонты и непрерывно развивающим свои умения.',
+    'Все начинается с программирования - искусства создания цифровых миров и технологий. JavaScript и немного читой Java, Python, микроконтроллеры (C, C++) - это мои инструменты, которыми я пользуюсь, чтобы превратить абстрактные идеи в конкретные решения.',
+    'Меня привлекает неизвестное, мистика сигналов и их интерпретация. ЭМГ и ЭЭГ, методика исследования электрической активности мышц и мозга, открывает новые границы понимания нашего тела и его взаимодействия с миром. Это не просто исследование, это путь к открытию новых возможностей.',
+    'Преподавание и обмен знаниями - важная часть моей жизни. Помогая другим освоить информатику, теорию информации, программирование, я чувствую, как растет и мое собственное понимание. Знание растет, когда им делишься.',
+    'Но в конце концов, это всего лишь часть того, кто я есть. Мир полон тайн, которые ждут своего открытия, и я стремлюсь быть тем, кто эти тайны раскрывает. Путь познания не имеет конца, и я рад этому. Ведь в поисках знания мы находим не только ответы, но и новые вопросы, ведущие нас дальше. И в этом, вероятно, и заключается истинная магия обучения.',
+    'https://github.com/MasterArcanum'
+];
+var speed = 100; // скорость в миллисекундах
+
+function typeWriter() {
+    if (i < txts[txtIdx].length) {
+        if (txtIdx === 0) {
+            document.getElementById("console").innerHTML += txts[txtIdx].charAt(i);
+            if (i === txts[txtIdx].length - 1) {
+                document.getElementById("image").style.display = "inline";
+            }
+        } else if (txtIdx === txts.length - 1) {  // если текущий текст - ссылка
+            if (i === 0) {  // если это первый символ ссылки
+                // добавляем весь текст ссылки сразу и делаем его кликабельным
+                document.getElementById("about-me-content").innerHTML += '<a href="' + txts[txtIdx] + '">' + txts[txtIdx] + '</a>';
+                i = txts[txtIdx].length;  // пропускаем все остальные символы ссылки
+            }
+        } else {
+            document.getElementById("about-me-content").innerHTML += txts[txtIdx].charAt(i);
+        }
+        i++;
+        setTimeout(typeWriter, speed);
+    } else if (txtIdx < txts.length - 1) {
+        txtIdx++;
+        i = 0;
+        document.getElementById("about-me-content").innerHTML += "<br><br>";
+        setTimeout(typeWriter, speed);
+    }
+    // Scroll to bottom
+    window.scrollTo(0,document.body.scrollHeight);
+
+}
+
+
+typeWriter();
+
+    </script>
+</body>
+</html>
